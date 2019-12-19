@@ -5,10 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const getMovie= async () => {
         try {
             let res = await axios.get("https://ghibliapi.herokuapp.com/films");
-            let data = res.data.data;
+            let data = res.data;
             data.forEach(movie => {
-                let option = movie.title
-                option.innerText = option.value
+                let option = document.createElement("option");
+                option.innerText = movie.title
+                option.id = movie.id
                 select.appendChild(option)
                 debugger
             })
@@ -16,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("error");
             
         }
-    }
+    } select.addEventListener("change", () => {
+        
+    })
     getMovie()
 })
