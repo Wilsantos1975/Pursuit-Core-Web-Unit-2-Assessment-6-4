@@ -5,26 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
     <link rel="stylesheet" href="./unit2.css">
     <script src="./unit2.js"></script>
-    <img src="" alt="">
 
     <title>Studio Ghibli Unit 2 assesment</title>
 </head>
 <body>
-    <h1>"Ghibli Review App"</h1>
-    <select name="" id="movie" disabled>
-        <option value="" selected disabled></option>
-    </select>
-    <div>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/ca/Studio_Ghibli_logo.svg/1200px-Studio_Ghibli_logo.svg.png" alt="">
+        <h1>Ghibli Review App</h1>
+    </header>
+    <main>
+        <select name="" id="select"></select>
+            <option value="" selected disabled></option>
+     </main>
+     <div id="movieInfo"></div>
+
+    <!-- <div>
         <h3>Title</h3>
         <p>release year</p>
         <p>description</p>
-    </div>
-    <form>
-        <input type="text" id="userInput">
-        <input type="submit" id="submit">Submit</input>
+    </div> -->
+    <form action="">
+        <input type="text" id="movieReview"/>
+        <input type="submit" id="Submit" value="Submit Review">Submit</input>
     </form>
     <ul>
 

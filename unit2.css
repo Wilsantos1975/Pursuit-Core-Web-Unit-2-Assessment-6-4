@@ -3,3 +3,31 @@ body {
     font-family: monospace;
     justify-content: center;
 }
+header {
+    width: 70%;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: skyblue;
+    margin: auto;
+    margin-bottom: 30px;
+
+}
+
+img {
+    height: 150px;
+
+}
+
+main {
+    width: 60%;
+    margin: auto;
+
+}
+
+#movieReview {
+    width: 400px;
+
+}
