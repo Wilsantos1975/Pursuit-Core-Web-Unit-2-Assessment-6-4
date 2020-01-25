@@ -1,77 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
-    const fetchData = async (url, callback) => {
+
+    const fetchData = async () => { // to fetch the data and to populate the select.
         try {
-            let res = await axios.get(url)
-            callback(res.data)
+            let res = await axios.get("https://ghibliapi.herokuapp.com/films");
+            let movies = res.data;
+            movies.forEach(movie => {
+                let select = document.querySelector("select");
+                let option = document.createElement("option");
+                option.innerText = movie.title;
+                option.value = movie.id;
+                select.appendChild(option)
+            })
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     }
-    const buildSelect = (arr) => {
-        let select = document.querySelector("select");
-        arr.forEach(movieObj => {
-            let option = document.createElement("option")
-            option.innerText = movieObj.title;
-            option.value = movieObj.id;
-            select.appendChild(option)
-        })
-
+   
+    const displayMovieInfo = async (id) => { // to get the info of the movie, by id
+        let res = await axios.get(`https://ghibliapi.herokuapp.com/films/${id}`);
+        let movieData = res.data;
+        let title = document.createElement("h3");
+        let releaseDate = document.createElement('p');
+        let description = document.createElement('p');
+        title.innerText = movieData.title;
+        releaseDate.innerText = movieData.release_date;
+        description.innerText = movieData.description;
+        let movieInfo = document.querySelector("#movieInfo");
+        movieInfo.innerHTML = ""; // to prevent the info to be display below the previous change
+        movieInfo.appendChild(title);
+        movieInfo.appendChild(releaseDate);
+        movieInfo.appendChild(description);
+    
     }
     
-    // const getMovie= async () => { 
-    //     try {
-    //         let res = await axios.get("https://ghibliapi.herokuapp.com/films");
-    //         let data = res.data;
-    //         data.forEach(movie => {
-    //             let option = document.createElement("option");
-    //             option.innerText = movie.title
-    //             option.id = movie.id
-    //             select.appendChild(option)
-    //             debugger
-    //         })
-    //     } catch (err) {
-    //         console.log("error");
-            
-    //     }
-    // }
+    fetchData();
 
-    const updateMovieInfo = (id) => {
-        let url = (`https://ghibliapi.herokuapp.com/films/${id}`)
-        fetchData(url,diplayMovieInfo)
-    }
-
-    const diplayMovieInfo = (movie) => {
-        let h3 = document.createElement("h3")
-        let releaseDate = document.createElement("p")
-        let description = document.createElement('p')
-        title.innerText = movie.title;
-        releaseDate.innerText = movie.release_date
-        description.innerText = movie.description
-        let movieInfo = document.querySelector("#movieInfo")
-        movieInfo.innerHTML = ""
-        movieInfo.appendChild(title)
-        movieInfo.appendChild(release_date)
-        movieInfo.appendChild(description)
-    }
-
-    fetchData("https://ghibliapi.herokuapp.com/films",buildSelect);
-    let select = document.querySelector("select");
-    select.addEventListener("change", (event) => {
-        updateMovieInfo(event.target.value)
+    let select = document.querySelector('select');
+    select.addEventListener('change',(e) => {
+        displayMovieInfo(e.target.value)
     })
+
     let form = document.querySelector("form");
-    form.addEventListener("submit", (event) => {
+    let userReview = document.querySelector("#userInput")
+    form.addEventListener("submit", (e) => {
         event.preventDefault()
-        let title = document.querySelector("h3").innerText;
-        let ul = document.querySelector("ul");
-        let li = document.querySelector("li");
-        let input = document.querySelector("#movieReview")
-        let review = input.value
-        input.value = ""
-        li.innerHTML = `<b>${title}: </b> ${review}`
+        let li = document.createElement("li");
+        li.innerText = `${title.innerText}: ${userReview.value}`
         ul.appendChild(li)
-
-
     })
+
 })
