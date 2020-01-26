@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
-    <script src="./index.js"></script>
-    <link rel="stylesheet" href="./master.css">
+    <script src="./unit2.js" async></script>
+    <link rel="stylesheet" href="./unit2.css">
     <title>Document</title>
 </head>
 <body>
@@ -18,12 +18,18 @@
         <select name="" id="">
             <option value="" selected disabled></option>
         </select>
-        <div id="movieInfo"></div>
+
+        <div id="movieInfo">
+            <h3 id="movieTitle"></h3>
+
+        </div>
+
         <form action="">
             <input type="text" placeholder="your review here" id="userInput"/>
             <input type="submit" value="Submit review"/>
         </form>
-        <ul></ul>
+
+        <ul id="movieReview"></ul>
 
     </main>
     
